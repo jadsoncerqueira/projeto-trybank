@@ -42,7 +42,7 @@ public class TrybankLib
         if(Logged) {
             throw new AccessViolationException("Usuário já está logado");
         } else {
-            for(int i = 0; i < Bank.Length; i++) {
+            for(int i = 0; i < registeredAccounts; i++) {
                 if(Bank[i,0] == number && Bank[i, 1] == agency) {
                     if(Bank[i, 2] == pass) {
                         Logged = true;
@@ -59,7 +59,12 @@ public class TrybankLib
     // 3. Construa a funcionalidade de fazer Logout
     public void Logout()
     {
-        throw new NotImplementedException();
+        if(!Logged) {
+            throw new AccessViolationException("Usuário não está logado");
+        } else {
+            Logged = false;
+            loggedUser = -99;
+        }
     }
 
     // 4. Construa a funcionalidade de checar o saldo
